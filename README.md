@@ -107,6 +107,21 @@ Pass whatever you want in the state dict. Built-in conditions read these keys:
 | `response_contains` | `response` | `key=` |
 | `last_tool_was` | `last_tool` | `key=` |
 
+`cost_exceeds` reads the first key from `keys` that is present in the state
+dict and treats it as authoritative — it does not sum or fall back across
+keys that are present. (It does skip a key whose value cannot be parsed as a
+number and try the next one.) Numeric strings are accepted for both
+`after_n_turns` (`"12"`) and `cost_exceeds` (`"1.50"`).
+
+## Running the tests
+
+The test suite uses only the Python standard library, so no dependencies are
+required:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
 ## License
 
 MIT
